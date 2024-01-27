@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import dataBase from './assets/dataBase'
 import './App.css'
@@ -5,7 +6,9 @@ import './App.css'
 function App() {
   const [docSum, setDocSum] = useState(0)
   const [quantity, setQuantity] = useState(0)
-  const [coefficient, setCoefficient] = useState(30)
+  const [coefficient, setCoefficient] = useState(0.3)
+
+
   let result = [];
 
 
@@ -60,6 +63,10 @@ function App() {
     setQuantity(0)
   }
 
+  function Copy (text) {
+    navigator.clipboard.writeText(text);
+  }
+
   return (
     <>
       <h1>Randomizer 2.0</h1>
@@ -79,11 +86,26 @@ function App() {
         {result?.map((item) => (
           <>
             <div key={item.id}>
-              <p>Название: {item.title}</p>
-              <p>Название в базе: {item.baseTitle}</p>
-              <p>Цена: {item.price}</p>
-              <p>Количество: {item.quantity}</p>
-              <p>Сумма: {item.sum}</p>
+              <div className="cardItem">
+                <p>Название: {item.title}</p> 
+                <button className='copy' onClick={() => Copy(item.title)}><i class="gg-copy"></i></button>
+              </div>
+              <div className="cardItem">
+              <p>Название в базе: {item.baseTitle}</p> 
+              <button className='copy' onClick={() => Copy(item.baseTitle)}><i class="gg-copy"></i></button>
+                </div>
+                <div className="cardItem">
+                <p>Цена: {item.price}</p> 
+                <button className='copy' onClick={() => Copy(item.price)}><i class="gg-copy"></i></button>
+              </div>
+              <div className="cardItem">
+                <p>Количество: {item.quantity}</p> 
+                <button className='copy' onClick={() => Copy(item.quantity)}><i class="gg-copy"></i></button>
+              </div>
+              <div className="cardItem">
+                <p>Сумма: {new Intl.NumberFormat("ru-RU").format(item.sum)}</p> 
+                <button className='copy' onClick={() => Copy(item.sum)}><i class="gg-copy"></i></button>
+              </div>
               <hr />
             </div>
             </>
