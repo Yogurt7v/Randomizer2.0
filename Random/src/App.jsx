@@ -10,16 +10,17 @@ function App() {
 
 
   function Final (docSum, quantity, dataBase) {
-    let max = Number(docSum);
-    console.log("Сумма: ", max);
-    let min = max / quantity;  // подпавить минимум 
-    let sum = 0;
 
-    do {
+    let medium = docSum / quantity;
+    let max = medium * 1.3;
+    let min = medium * 0.7;
+    
+
+
+    for (let i = 0; i < quantity; i++) {
       let randomID = Math.round(Math.random() * (dataBase.length - 0) + 0);
       let randomSum = Math.round((Math.random() * (max - min) + min));
-      let randomQuantity = Math.round((randomSum / dataBase[randomID].price));
-      sum = sum + randomSum;
+      let randomQuantity = (Math.round((randomSum / dataBase[randomID].price)*100))/100;
 
       result.push({
         id: dataBase[randomID].id,
@@ -27,24 +28,32 @@ function App() {
         baseTitle: dataBase[randomID].baseTitle,
         price: dataBase[randomID].price,
         quantity: randomQuantity,
-        sum: randomQuantity * dataBase[randomID].price
+        sum: randomSum
 
       });
-      console.log("Результат: ", result);
-      console.log("Сумма: ", sum);
-    } while (sum <= docSum);
-    
-    if (sum> docSum) {
+    }
+    let reduce = result.reduce((acc, item) => acc + item.sum, 0);
+    reduce - docSum
+    if (reduce > docSum) {
 
       result[result.length-1] = {
         ...result[result.length - 1],
-        sum: docSum - result[result.length - 2].sum,
-        quantity: (Math.round(((docSum - result[result.length - 2].sum) /  result[result.length - 1].price) *1000))/1000
+        sum: result[result.length - 1].sum - (reduce - docSum),
+        quantity: (Math.round(((result[result.length - 1].sum - (reduce - docSum)) /  result[result.length - 1].price) *1000))/1000
       }
     }
+    if (reduce < docSum) {
+      result[result.length-1] = {
+        ...result[result.length - 1],
+        sum: docSum-reduce + result[result.length - 1].sum,
+        quantity: (Math.round(((docSum-reduce + result[result.length - 1].sum) /  result[result.length - 1].price) *1000))/1000
+      }
     }
+  }
 
   Final(docSum, quantity, dataBase);
+  console.log("Результат: ", result);
+  console.log("Reduce: ", result.reduce((acc, item) => acc + item.sum, 0));
 
   // настроить выдачу результатов
 
@@ -56,13 +65,13 @@ function App() {
           <input type="number" placeholder='Коэфициент' onChange={(e)=> setQuantity(e.target.value)}/>
       </div>
 
-      <div>
+      {/* <div>
         {dataBase.map((item) => (
           <div key={item.id}>
             <p>{item.title}</p>
           </div>
         ))}
-      </div>
+      </div> */}
     </>
   )
 }
