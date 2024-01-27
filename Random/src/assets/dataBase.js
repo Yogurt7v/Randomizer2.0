@@ -1,4 +1,4 @@
-let dataBase = [
+const dataBase = [
     {
         id: 1,
         title: "Лист горячекатаный 1.5х1250х2500",
