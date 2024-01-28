@@ -26,10 +26,10 @@ function App() {
       let randomQuantity = (Math.round((randomSum / dataBase[randomID]?.price)*100))/100;
 
       result.push({
-        id: dataBase[randomID]?.id,
-        title: dataBase[randomID]?.title,
-        baseTitle: dataBase[randomID]?.baseTitle,
-        price: dataBase[randomID]?.price,
+        id: dataBase[randomID].id,
+        title: dataBase[randomID].title,
+        baseTitle: dataBase[randomID].baseTitle,
+        price: dataBase[randomID].price,
         quantity: randomQuantity,
         sum: randomSum
 

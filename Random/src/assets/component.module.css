@@ -8,15 +8,28 @@
 .cardItem{
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: space-between;
+    padding: 0 0 0 20px;
     gap: 10px;
     margin: 10px;
   }
 
+.cardItem:first-child{
+  padding-top: 10px;
+}  
+.cardItem:last-child{
+  padding-bottom: 10px;
+}
 
-  .copy{
-    width: 10px;
-    height: 10px;
-    cursor: pointer;
-  }
-  
+.copy{
+  background-color: white;
+  padding: 8px;
+}
+
+
+.svg{
+  padding: 0;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+}

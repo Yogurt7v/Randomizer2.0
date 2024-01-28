@@ -1,5 +1,6 @@
 import style from './component.module.css'
-import React from 'react'
+import copyImg  from './copy.jpg'
+import test from "./copy-svgrepo-com.svg";
 
 // eslint-disable-next-line react/prop-types
 export const Component = ({result})=>{
@@ -15,23 +16,23 @@ export const Component = ({result})=>{
             <div key={item.id} className={style.sinlgeCard}>
               <div className={style.cardItem}>
                 <div><strong>Название:</strong> {item.title}</div>
-                <button className={style.copy} onClick={() => Copy(item.title)}>c</button>
+                <button className={style.copy} onClick={() => Copy(item.title)}><img className={style.svg} src={test} alt="Copy" /></button>
               </div>
               <div className={style.cardItem}>
               <div><strong>Название в базе:</strong> {item.baseTitle}</div>
-              <button className={style.copy} onClick={() => Copy(item.baseTitle)}>c</button>
+              <button className={style.copy} onClick={() => Copy(item.baseTitle)}><img className={style.svg} src={test} alt="Copy" /></button>
                 </div>
                 <div className={style.cardItem}>
                 <div><strong>Цена:</strong> {item.price}</div>
-                <button className={style.copy}  onClick={() => Copy(item.price)}>c</button>
+                <button className={style.copy}  onClick={() => Copy(item.price)}><img className={style.svg} src={test} alt="Copy" /></button>
               </div>
               <div className={style.cardItem}>
                 <div><strong>Количество:</strong>  {item.quantity}</div>
-                <button className={style.copy}  onClick={() => Copy(item.quantity)}>c</button>
+                <button className={style.copy}  onClick={() => Copy(item.quantity)}><img className={style.svg} src={test} alt="Copy" /></button>
               </div>
               <div className={style.cardItem}>
-                <div><strong>Сумма:</strong>{new Intl.NumberFormat("ru-RU").format(item.sum)}</div>
-                <button className={style.copy}  onClick={() => Copy(item.sum)}>c</button>
+                <div><strong>Сумма:</strong>  {new Intl.NumberFormat("ru-RU").format(item.sum)}</div>
+                <button className={style.copy}  onClick={() => Copy(item.sum)}><img className={style.svg} src={test} alt="Copy" /></button>
               </div>
             </div>
             </>
