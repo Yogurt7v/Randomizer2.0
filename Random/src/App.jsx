@@ -56,7 +56,7 @@ function App() {
 
   Final(docSum, quantity, dataBase)
 
-  console.log("reduser", result.reduce((acc, item) => acc + item.sum, 0));
+  // console.log("reduser", result.reduce((acc, item) => acc + item.sum, 0));
 
   function Reset () {
     document.getElementById("range").value = 0.3;
