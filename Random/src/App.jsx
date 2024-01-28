@@ -22,7 +22,7 @@ function App() {
     for (let i = 0; i < quantity; i++) {
 
       let randomID = Math.round(Math.random() * (dataBase.length - 0) + 0);
-      let randomSum = Math.round((Math.random() * (max - min) + min));
+      let randomSum = Math.round((Math.random() * (max - min) + min)*100)/100;
       let randomQuantity = (Math.round((randomSum / dataBase[randomID]?.price)*100))/100;
 
       result.push({
@@ -73,14 +73,15 @@ function App() {
     <>
       <h1>Randomizer 2.0</h1>
       <div className="card">
-          <input type="number" placeholder='Сумма'onChange={(e)=> setDocSum(e.target.value)} id='sum'/>
-          <input type="number" placeholder='Коэфициент' onChange={(e)=> setQuantity(e.target.value)} id='quantity'/>
-          <div>
+        <div className="inputs">
+          <input type="tel" autoComplete="off" placeholder='Сумма'onChange={(e)=> setDocSum(e.target.value)} id='sum'/>
+          <input type="tel" autoComplete="off" placeholder='Кол-во' onChange={(e)=> setQuantity(e.target.value)} id='quantity'/>        </div>
+          <div className='range'>
+            <label>Разброс относительно средней цены</label>
+            <div className='coefficient'>{coefficient*100} %</div>
             <input type="range" id="range" name="range" min="0.1" max="0.9" step="0.1" defaultValue="0.3" onChange={(e)=> setCoefficient(e.target.value)}></input>
-            <div>{coefficient}</div>
-            <label>range</label>
           </div>
-          <button onClick={Reset}>Сбросить</button>
+          <button className="resetBtn" onClick={Reset}>Сбросить</button>
       </div>
       <Component result={result} />
     </>

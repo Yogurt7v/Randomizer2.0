@@ -1,7 +1,22 @@
+.sinlgeCard{
+  border: 1px solid grey;
+  border-radius: 15px;
+  margin-bottom: 30px;
+
+}
+
 .cardItem{
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: left;
     gap: 10px;
     margin: 10px;
+  }
+
+
+  .copy{
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
   }
   

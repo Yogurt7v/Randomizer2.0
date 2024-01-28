@@ -1,21 +1,8 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 80px auto;
   padding: 2rem;
   text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
 @keyframes logo-spin {
@@ -34,7 +21,15 @@
 }
 
 .card {
+  margin: auto;
   padding: 2em;
+  max-width: 370px;
+}
+
+.inputs{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .read-the-docs {
@@ -42,3 +37,33 @@
 }
 
 
+input {
+  letter-spacing: 0.05em;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 14px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.range{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#range{
+  margin: auto;
+  width: 80%;
+  border-radius: 14px;
+}
+
+.coefficient{
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.resetBtn{
+  margin-top: 10px;
+  width: 90%;
+}
