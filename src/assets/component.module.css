@@ -1,0 +1,65 @@
+.sinlgeCard{
+  border: 1px solid grey;
+  border-radius: 15px;
+  margin-bottom: 30px;
+
+}
+
+.cardItem{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 0 20px;
+    gap: 10px;
+    margin: 10px;
+  }
+
+.cardItem:first-child{
+  padding-top: 10px;
+}  
+.cardItem:last-child{
+  padding-bottom: 10px;
+}
+
+.copy{
+  background-color: white;
+  padding: 8px;
+}
+
+.copy:active{
+  background-color: rgb(228, 228, 228);
+}
+
+
+.svg{
+  padding: 0;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.cardItemPrice{
+  display:flex;
+  gap: 30px;
+}
+
+.cardItemInterest{
+  display: flex;
+  gap: 15px;
+}
+
+.componentBtn{
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10;
+  opacity: 0;
+  width: 200px;
+  margin-bottom: 20px;
+  transition: ease-in-out 0.8s;
+}
+
+.componentBtn:hover{
+    opacity: 1;
+}
