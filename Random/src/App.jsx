@@ -1,4 +1,4 @@
-
+import Component from './assets/component'
 import { useState } from 'react'
 import dataBase from './assets/dataBase'
 import './App.css'
@@ -59,59 +59,30 @@ function App() {
   console.log("reduser", result.reduce((acc, item) => acc + item.sum, 0));
 
   function Reset () {
+    document.getElementById("range").value = 0.3;
+    document.getElementById("sum").value = "";
+    document.getElementById("quantity").value = "";
     setDocSum(0)
     setQuantity(0)
+    setCoefficient(0.3)
+    result = []
   }
 
-  function Copy (text) {
-    navigator.clipboard.writeText(text);
-  }
 
   return (
     <>
       <h1>Randomizer 2.0</h1>
       <div className="card">
-          <input type="number" placeholder='Сумма'onChange={(e)=> setDocSum(e.target.value)}/>
-          <input type="number" placeholder='Коэфициент' onChange={(e)=> setQuantity(e.target.value)}/>
+          <input type="number" placeholder='Сумма'onChange={(e)=> setDocSum(e.target.value)} id='sum'/>
+          <input type="number" placeholder='Коэфициент' onChange={(e)=> setQuantity(e.target.value)} id='quantity'/>
           <div>
             <input type="range" id="range" name="range" min="0.1" max="0.9" step="0.1" defaultValue="0.3" onChange={(e)=> setCoefficient(e.target.value)}></input>
             <div>{coefficient}</div>
-            <label for="range">range</label>
+            <label>range</label>
           </div>
-
           <button onClick={Reset}>Сбросить</button>
       </div>
-
-      <div>
-        {result?.map((item) => (
-          <>
-            <div key={item.id}>
-              <div className="cardItem">
-                <p>Название: {item.title}</p> 
-                <button className='copy' onClick={() => Copy(item.title)}><i class="gg-copy"></i></button>
-              </div>
-              <div className="cardItem">
-              <p>Название в базе: {item.baseTitle}</p> 
-              <button className='copy' onClick={() => Copy(item.baseTitle)}><i class="gg-copy"></i></button>
-                </div>
-                <div className="cardItem">
-                <p>Цена: {item.price}</p> 
-                <button className='copy' onClick={() => Copy(item.price)}><i class="gg-copy"></i></button>
-              </div>
-              <div className="cardItem">
-                <p>Количество: {item.quantity}</p> 
-                <button className='copy' onClick={() => Copy(item.quantity)}><i class="gg-copy"></i></button>
-              </div>
-              <div className="cardItem">
-                <p>Сумма: {new Intl.NumberFormat("ru-RU").format(item.sum)}</p> 
-                <button className='copy' onClick={() => Copy(item.sum)}><i class="gg-copy"></i></button>
-              </div>
-              <hr />
-            </div>
-            </>
-          ))
-        }
-      </div>
+      <Component result={result} />
     </>
   )
 }
