@@ -26,10 +26,40 @@
   padding: 8px;
 }
 
+.copy:active{
+  background-color: rgb(228, 228, 228);
+}
+
 
 .svg{
   padding: 0;
   margin: 0;
   width: 20px;
   height: 20px;
+}
+
+.cardItemPrice{
+  display:flex;
+  gap: 30px;
+}
+
+.cardItemInterest{
+  display: flex;
+  gap: 15px;
+}
+
+.componentBtn{
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10;
+  opacity: 0;
+  width: 200px;
+  margin-bottom: 20px;
+  transition: ease-in-out 0.8s;
+}
+
+.componentBtn:hover{
+    opacity: 1;
 }

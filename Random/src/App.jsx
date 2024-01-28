@@ -83,7 +83,7 @@ function App() {
           </div>
           <button className="resetBtn" onClick={Reset}>Сбросить</button>
       </div>
-      <Component result={result} />
+      <Component result={result } reset={Reset} />
     </>
   )
 }
