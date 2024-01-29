@@ -1,6 +1,6 @@
 #root {
   max-width: 1280px;
-  margin: 30px auto;
+  margin: 80px auto;
   padding: 2rem;
   text-align: center;
   
@@ -32,8 +32,12 @@
 .inputs{
   margin-top: 10px;
   display: flex;
-  flex-direction: column;
+  grid: 6 1;
   gap: 10px;
+}
+
+.quantity{
+  width: 100px;
 }
 
 .read-the-docs {
@@ -68,6 +72,65 @@ input {
 }
 
 .resetBtn{
-  margin-top: 10px;
+  margin-top: 20px;
   width: 90%;
 }
+
+h1{
+  text-shadow: 11px 12px 22px #213547;
+}
+
+.componentBtn{
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  width: 200px;
+  margin-bottom: 20px;
+  transition: ease-in-out 0.8s;
+}
+
+.componentBtn:hover{
+    opacity: 1;
+}
+
+.edited{
+  margin: 0;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+}
+
+.select{
+  margin: 10px auto;
+  max-width: 300px;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+}
+
+.svg{
+  padding: 0;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+}
+
+
+
+.open{
+  animation: myAnim 1s ease 0s 1 normal forwards;}
+
+  @keyframes myAnim {
+    0% {
+      opacity: 0.2;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }

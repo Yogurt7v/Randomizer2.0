@@ -2,6 +2,7 @@ import Component from './assets/component'
 import { useState } from 'react'
 import dataBase from './assets/dataBase'
 import Select from 'react-select'
+import settings from './assets/settings-svgrepo-com.svg'
 import './App.css'
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
     { value: 5, label: '5%' }
   ]
   const MyComponent = () => (
-    <Select options={options} onChange={e => setInterest(e.value)}/>
+    <Select options={options} onChange={e => setInterest(e.value)} defaultValue={{value: 5, label: '5%'}} className='select'/>
   )
 
   let result = [];
@@ -84,24 +85,26 @@ function App() {
   return (
     <>
       <div className="header">
-        <button className="settings" onClick={() => setSettingsVisible(!settingsVisible)}>Настройки</button>
+        <button className="componentBtn edited" onClick={() => {
+          setSettingsVisible(!settingsVisible)
+          }}><img className="svg" src={settings} alt="Settings" /></button>
       </div>
       <h1>Randomizer 2.0</h1>
       <div className="card">
         <div className="inputs">
-          <input type="number" autoComplete="off" placeholder='Сумма'onChange={(e)=> {setDocSum(e.target.value)}} id='sum'/>
-          <input type="number" autoComplete="off" placeholder='Кол-во' onChange={(e)=> setQuantity(e.target.value)} id='quantity'/>        
+          <input type="number" autoComplete='off' placeholder='Сумма'onChange={(e)=> {setDocSum(e.target.value)}} id='sum'/>
+          <input type="number" autoComplete='off' className='quantity' placeholder='Кол-во' onChange={(e)=> setQuantity(e.target.value)} id='quantity'/>        
         </div>
         {settingsVisible? (
           <>
-          <div className="settingsWrapper">
+          <div className="settingsWrapper open">
             <div className='range'>
-              <label>Разброс относительно средней цены</label>
+              <label>Разброс цены</label>
               <div className='coefficient'>{coefficient*100} %</div>
               <input type="range" id="range" name="range" min="0.1" max="0.9" step="0.1" defaultValue="0.3" onChange={(e)=> setCoefficient(e.target.value)}></input>
             </div>
+            <MyComponent />
           </div>
-          <MyComponent  className='select'/>
           </>
         ) : null}
           <button className="resetBtn" onClick={Reset}>Сбросить</button>

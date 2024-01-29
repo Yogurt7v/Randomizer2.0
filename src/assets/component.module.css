@@ -65,3 +65,14 @@
 .componentBtn:hover{
     opacity: 1;
 }
+
+
+.open {
+  transform: translateY(-150%);
+  animation: ani 1s forwards;
+}
+
+@keyframes ani {
+  0% {transform: translateY(-150%);}
+  100% {transform: translateY(0);}
+}
