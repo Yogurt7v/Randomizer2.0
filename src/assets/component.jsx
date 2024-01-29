@@ -3,7 +3,7 @@ import copySvg from "./copy-svgrepo-com.svg";
 import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-export const Component = ({ result, reset }) => {
+export const Component = ({ result, reset, interest }) => {
   const [visible, setVisible] = useState(false);
 
   function Copy(text) {
@@ -45,6 +45,17 @@ export const Component = ({ result, reset }) => {
               </button>
             </div>
             <div className={style.cardItem}>
+              <div>
+                <strong>Количество:</strong> {item.quantity}
+              </div>
+              <button
+                className={style.copy}
+                onClick={() => Copy(item.quantity)}
+              >
+                <img className={style.svg} src={copySvg} alt="Copy" />
+              </button>
+            </div>
+            <div className={style.cardItem}>
               <div className={style.cardItemPrice}>
                 <div>
                   <strong>Цена:</strong> {item.price}
@@ -52,7 +63,7 @@ export const Component = ({ result, reset }) => {
                 {visible ? (
                   <div>
                     <strong>Цена с наценкой:</strong>{" "}
-                    {Math.round((item.price + item.price * 0.05) * 1000) / 1000}
+                    {Math.round((item.price + item.price * (Number(interest)/ 100 )) * 1000) / 1000}
                   </div>
                 ) : null}
               </div>
@@ -77,17 +88,6 @@ export const Component = ({ result, reset }) => {
             </div>
             <div className={style.cardItem}>
               <div>
-                <strong>Количество:</strong> {item.quantity}
-              </div>
-              <button
-                className={style.copy}
-                onClick={() => Copy(item.quantity)}
-              >
-                <img className={style.svg} src={copySvg} alt="Copy" />
-              </button>
-            </div>
-            <div className={style.cardItem}>
-              <div>
                 <strong>Сумма:</strong>{" "}
                 {new Intl.NumberFormat("ru-RU").format(item.sum)}
               </div>
@@ -99,7 +99,11 @@ export const Component = ({ result, reset }) => {
         </>
       ))}
 
-      {result.length === 0 ? null : <button style={{ width: "300px" }} onClick={reset}>Сбросить</button>}
+      {result.length === 0 ? null : (
+        <button style={{ width: "300px" }} onClick={reset}>
+          Сбросить
+        </button>
+      )}
     </div>
   );
 };

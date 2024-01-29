@@ -1,16 +1,27 @@
 import Component from './assets/component'
 import { useState } from 'react'
 import dataBase from './assets/dataBase'
+import Select from 'react-select'
 import './App.css'
 
 function App() {
   const [docSum, setDocSum] = useState(0)
   const [quantity, setQuantity] = useState(0)
   const [coefficient, setCoefficient] = useState(0.3)
-
+  const [interest, setInterest] = useState(5)
+  const options = [
+    { value: 0.5, label: "0.5%"  },
+    { value: 1, label: "1%" },
+    { value: 2, label: '2%' },
+    { value: 3, label: '3%' },
+    { value: 4, label: '4%' },
+    { value: 5, label: '5%' }
+  ]
+  const MyComponent = () => (
+    <Select options={options} onChange={e => setInterest(e.value)}/>
+  )
 
   let result = [];
-
 
   function Final (docSum, quantity, dataBase) {
 
@@ -21,7 +32,7 @@ function App() {
 
     for (let i = 0; i < quantity; i++) {
 
-      let randomID = Math.round(Math.random() * (dataBase.length - 0) + 0);
+      let randomID = Math.round(Math.random() * ((dataBase.length -1) - 0) + 0);
       let randomSum = Math.round((Math.random() * (max - min) + min)*100)/100;
       let randomQuantity = (Math.round((randomSum / dataBase[randomID]?.price)*100))/100;
 
@@ -74,16 +85,17 @@ function App() {
       <h1>Randomizer 2.0</h1>
       <div className="card">
         <div className="inputs">
-          <input type="tel" autoComplete="off" placeholder='Сумма'onChange={(e)=> setDocSum(e.target.value)} id='sum'/>
-          <input type="tel" autoComplete="off" placeholder='Кол-во' onChange={(e)=> setQuantity(e.target.value)} id='quantity'/>        </div>
+          <input type="number" autoComplete="off" placeholder='Сумма'onChange={(e)=> {setDocSum(e.target.value)}} id='sum'/>
+          <input type="number" autoComplete="off" placeholder='Кол-во' onChange={(e)=> setQuantity(e.target.value)} id='quantity'/>        </div>
           <div className='range'>
             <label>Разброс относительно средней цены</label>
             <div className='coefficient'>{coefficient*100} %</div>
             <input type="range" id="range" name="range" min="0.1" max="0.9" step="0.1" defaultValue="0.3" onChange={(e)=> setCoefficient(e.target.value)}></input>
           </div>
+          <MyComponent  className='select'/>
           <button className="resetBtn" onClick={Reset}>Сбросить</button>
       </div>
-      <Component result={result } reset={Reset} />
+      <Component result={result } reset={Reset} interest={interest}/>
     </>
   )
 }
