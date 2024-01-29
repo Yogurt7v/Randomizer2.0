@@ -20,7 +20,7 @@ function App() {
     { value: 5, label: '5%' }
   ]
   const MyComponent = () => (
-    <Select options={options} onChange={e => setInterest(e.value)} defaultValue={{value: 5, label: '5%'}} className='select'/>
+    <Select options={options} onChange={e => setInterest(e.value)} value={{value: interest, label: `${interest}%`}} defaultValue={{value: 5, label: '5%'}} className='select'/>
   )
 
   let result = [];
@@ -64,15 +64,18 @@ function App() {
         quantity: (Math.round(((docSum-reduce + result[result.length - 1]?.sum) /  result[result.length - 1]?.price) *1000))/1000
       }
     }
+
+    if (result.find(item => item.sum < 0)) {
+      Final(docSum, quantity, dataBase)
+    }
     return result
   }
 
   Final(docSum, quantity, dataBase)
 
-  // console.log("reduser", result.reduce((acc, item) => acc + item.sum, 0));
 
   function Reset () {
-    document.getElementById("range").value = 0.3;
+    // document.getElementById("range").value = 0.3;
     document.getElementById("sum").value = "";
     document.getElementById("quantity").value = "";
     setDocSum(0)
@@ -87,6 +90,8 @@ function App() {
       <div className="header">
         <button className="componentBtn edited" onClick={() => {
           setSettingsVisible(!settingsVisible)
+          document.querySelector('.settingsWrapper').classList.delete('open')
+          document.querySelector('.settingsWrapper').classList.add('clo')
           }}><img className="svg" src={settings} alt="Settings" /></button>
       </div>
       <h1>Randomizer 2.0</h1>

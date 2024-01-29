@@ -40,6 +40,7 @@
   height: 20px;
 }
 
+
 .cardItemPrice{
   display:flex;
   gap: 30px;
@@ -75,4 +76,11 @@
 @keyframes ani {
   0% {transform: translateY(-150%);}
   100% {transform: translateY(0);}
+}
+
+
+.bodred{
+  border: 1px solid grey;
+  border-radius: 15px;
+  margin-bottom: 30px;
 }

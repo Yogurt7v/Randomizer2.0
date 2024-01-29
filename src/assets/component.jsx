@@ -1,5 +1,6 @@
 import style from "./component.module.css";
 import copySvg from "./copy-svgrepo-com.svg";
+import copySvgBlue from "./copy-svgrepo-com2.svg";
 import { useState } from "react";
 import dataBase from "./dataBase";
 
@@ -11,12 +12,8 @@ export const Component = ({ result, reset, interest }) => {
     navigator.clipboard.writeText(text);
   }
 
-//   function getUid() {
-//     return Math.random() * (100000000000 - 0) + 0;
-//   }
-
   return (
-    <div className={style.component} key={1}>
+    <div className={style.component}>
       <button
         className={style.componentBtn}
         onClick={() => setVisible(!visible)}
@@ -79,7 +76,7 @@ export const Component = ({ result, reset, interest }) => {
                       )
                     }
                   >
-                    <img className={style.svg} src={copySvg} alt="Copy" />
+                    <img className={style.svg} src={copySvgBlue} alt="Copy" />
                   </button>
                 ) : null}
                 <button className={style.copy} onClick={() => Copy(item.price)}>
