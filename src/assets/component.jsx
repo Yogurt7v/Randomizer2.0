@@ -1,6 +1,7 @@
 import style from "./component.module.css";
 import copySvg from "./copy-svgrepo-com.svg";
 import { useState } from "react";
+import dataBase from "./dataBase";
 
 // eslint-disable-next-line react/prop-types
 export const Component = ({ result, reset, interest }) => {
@@ -10,12 +11,12 @@ export const Component = ({ result, reset, interest }) => {
     navigator.clipboard.writeText(text);
   }
 
-  function getUid() {
-    return Math.random() * (100000000000 - 0) + 0;
-  }
+//   function getUid() {
+//     return Math.random() * (100000000000 - 0) + 0;
+//   }
 
   return (
-    <div className={style.component} key={getUid()}>
+    <div className={style.component} key={1}>
       <button
         className={style.componentBtn}
         onClick={() => setVisible(!visible)}

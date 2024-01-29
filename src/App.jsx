@@ -9,6 +9,7 @@ function App() {
   const [quantity, setQuantity] = useState(0)
   const [coefficient, setCoefficient] = useState(0.3)
   const [interest, setInterest] = useState(5)
+  const [settingsVisible, setSettingsVisible] = useState(false)
   const options = [
     { value: 0.5, label: "0.5%"  },
     { value: 1, label: "1%" },
@@ -82,17 +83,27 @@ function App() {
 
   return (
     <>
+      <div className="header">
+        <button className="settings" onClick={() => setSettingsVisible(!settingsVisible)}>Настройки</button>
+      </div>
       <h1>Randomizer 2.0</h1>
       <div className="card">
         <div className="inputs">
           <input type="number" autoComplete="off" placeholder='Сумма'onChange={(e)=> {setDocSum(e.target.value)}} id='sum'/>
-          <input type="number" autoComplete="off" placeholder='Кол-во' onChange={(e)=> setQuantity(e.target.value)} id='quantity'/>        </div>
-          <div className='range'>
-            <label>Разброс относительно средней цены</label>
-            <div className='coefficient'>{coefficient*100} %</div>
-            <input type="range" id="range" name="range" min="0.1" max="0.9" step="0.1" defaultValue="0.3" onChange={(e)=> setCoefficient(e.target.value)}></input>
+          <input type="number" autoComplete="off" placeholder='Кол-во' onChange={(e)=> setQuantity(e.target.value)} id='quantity'/>        
+        </div>
+        {settingsVisible? (
+          <>
+          <div className="settingsWrapper">
+            <div className='range'>
+              <label>Разброс относительно средней цены</label>
+              <div className='coefficient'>{coefficient*100} %</div>
+              <input type="range" id="range" name="range" min="0.1" max="0.9" step="0.1" defaultValue="0.3" onChange={(e)=> setCoefficient(e.target.value)}></input>
+            </div>
           </div>
           <MyComponent  className='select'/>
+          </>
+        ) : null}
           <button className="resetBtn" onClick={Reset}>Сбросить</button>
       </div>
       <Component result={result } reset={Reset} interest={interest}/>
