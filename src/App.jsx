@@ -89,20 +89,19 @@ function App() {
     <>
       <div className="header">
         <button className="componentBtn edited" onClick={() => {
-          setSettingsVisible(!settingsVisible)
-          document.querySelector('.settingsWrapper').classList.delete('open')
-          document.querySelector('.settingsWrapper').classList.add('clo')
+          // setSettingsVisible(!settingsVisible)
+          document.querySelector('.settingsWrapper').classList.toggle('none')
           }}><img className="svg" src={settings} alt="Settings" /></button>
       </div>
       <h1>Randomizer 2.0</h1>
       <div className="card">
         <div className="inputs">
-          <input type="number" autoComplete='off' placeholder='Сумма'onChange={(e)=> {setDocSum(e.target.value)}} id='sum'/>
-          <input type="number" autoComplete='off' className='quantity' placeholder='Кол-во' onChange={(e)=> setQuantity(e.target.value)} id='quantity'/>        
+          <input type="number" autoComplete='off' min="0" className='sum' placeholder='Сумма'onChange={(e)=> {setDocSum(e.target.value)}} id='sum'/>
+          <input type="number" autoComplete='off' min="0" className='quantity' placeholder='Кол-во' onChange={(e)=> setQuantity(e.target.value)} id='quantity'/>        
         </div>
-        {settingsVisible? (
-          <>
-          <div className="settingsWrapper open">
+        {/* {settingsVisible? (
+          <> */}
+          <div className="settingsWrapper none">
             <div className='range'>
               <label>Разброс цены</label>
               <div className='coefficient'>{coefficient*100} %</div>
@@ -111,8 +110,8 @@ function App() {
             <MyComponent />
             <button className="resetBtn" onClick={Reset}>Обнулить параметры</button>
           </div>
-          </>
-        ) : null}
+          {/* </>
+        ) : null} */}
 
       </div>
       <Component result={result } reset={Reset} interest={interest}/>
