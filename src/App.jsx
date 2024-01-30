@@ -53,14 +53,14 @@ function App() {
 
       result[result.length-1] = {
         ...result[result.length - 1],
-        sum: result[result.length - 1].sum - (reduce - docSum),
+        sum: (result[result.length - 1].sum - (reduce - docSum)).toFixed(2),
         quantity: (Math.round(((result[result.length - 1].sum - (reduce - docSum)) /  result[result.length - 1].price) *1000))/1000
       }
     }
     if (reduce < docSum) {
       result[result.length-1] = {
         ...result[result.length - 1],
-        sum: docSum-reduce + result[result.length - 1]?.sum,
+        sum: (docSum-reduce + result[result.length - 1]?.sum).toFixed(2),
         quantity: (Math.round(((docSum-reduce + result[result.length - 1]?.sum) /  result[result.length - 1]?.price) *1000))/1000
       }
     }
