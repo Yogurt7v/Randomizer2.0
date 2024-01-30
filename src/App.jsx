@@ -3,6 +3,7 @@ import { useState } from 'react'
 import dataBase from './assets/dataBase'
 import Select from 'react-select'
 import settings from './assets/settings-svgrepo-com.svg'
+import admin from './assets/admin.svg'
 import './App.css'
 
 function App() {
@@ -10,7 +11,6 @@ function App() {
   const [quantity, setQuantity] = useState(0)
   const [coefficient, setCoefficient] = useState(0.3)
   const [interest, setInterest] = useState(5)
-  const [settingsVisible, setSettingsVisible] = useState(false)
   const options = [
     { value: 0.5, label: "0.5%"  },
     { value: 1, label: "1%" },
@@ -88,10 +88,10 @@ function App() {
   return (
     <>
       <div className="header">
+		<button className="componentBtn edited2"><img className='svg' src={admin}/></button>
         <button className="componentBtn edited" onClick={() => {
-          // setSettingsVisible(!settingsVisible)
-          document.querySelector('.settingsWrapper').classList.toggle('none')
-          }}><img className="svg" src={settings} alt="Settings" /></button>
+			document.querySelector('.settingsWrapper').classList.toggle('none')}}><img className="svg" src={settings} alt="Settings" />
+		</button>
       </div>
       <h1>Randomizer 2.0</h1>
       <div className="card">
@@ -99,8 +99,6 @@ function App() {
           <input type="number" autoComplete='off' min="0" className='sum' placeholder='Сумма'onChange={(e)=> {setDocSum(e.target.value)}} id='sum'/>
           <input type="number" autoComplete='off' min="0" className='quantity' placeholder='Кол-во' onChange={(e)=> setQuantity(e.target.value)} id='quantity'/>        
         </div>
-        {/* {settingsVisible? (
-          <> */}
           <div className="settingsWrapper none">
             <div className='range'>
               <label>Разброс цены</label>
@@ -110,9 +108,6 @@ function App() {
             <MyComponent />
             <button className="resetBtn" onClick={Reset}>Обнулить параметры</button>
           </div>
-          {/* </>
-        ) : null} */}
-
       </div>
       <Component result={result } reset={Reset} interest={interest}/>
     </>
