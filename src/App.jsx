@@ -75,7 +75,7 @@ function App() {
 
 
   function Reset () {
-    // document.getElementById("range").value = 0.3;
+    // document.getElementById("range").value = {coefficient};
     document.getElementById("sum").value = "";
     document.getElementById("quantity").value = "";
     setDocSum(0)
@@ -109,10 +109,11 @@ function App() {
               <input type="range" id="range" name="range" min="0.1" max="0.9" step="0.1" defaultValue="0.3" onChange={(e)=> setCoefficient(e.target.value)}></input>
             </div>
             <MyComponent />
+            <button className="resetBtn" onClick={Reset}>Обнулить параметры</button>
           </div>
           </>
         ) : null}
-          <button className="resetBtn" onClick={Reset}>Сбросить</button>
+
       </div>
       <Component result={result } reset={Reset} interest={interest}/>
     </>

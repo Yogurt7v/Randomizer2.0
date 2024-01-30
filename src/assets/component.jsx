@@ -2,11 +2,12 @@ import style from "./component.module.css";
 import copySvg from "./copy-svgrepo-com.svg";
 import copySvgBlue from "./copy-svgrepo-com2.svg";
 import { useState } from "react";
-import dataBase from "./dataBase";
+// import dataBase from "./dataBase";
 
 // eslint-disable-next-line react/prop-types
 export const Component = ({ result, reset, interest }) => {
   const [visible, setVisible] = useState(false);
+  let number = 0;
 
   function Copy(text) {
     navigator.clipboard.writeText(text);
@@ -20,12 +21,17 @@ export const Component = ({ result, reset, interest }) => {
       >
         Наценка?
       </button>
+      {result.length === 0 ? null : (
+        <button style={{ width: "300px", marginBottom: "20px" }} onClick={reset}>
+          Сбросить
+        </button>
+      )}
       {result?.map((item) => (
         <>
           <div key={item.id} className={style.sinlgeCard}>
             <div className={style.cardItem}>
               <div>
-                <strong>Название:</strong> {item.title}
+                <strong className={style.title}> {item.title}</strong>
               </div>
               <button className={style.copy} onClick={() => Copy(item.title)}>
                 <img className={style.svg} src={copySvg} alt="Copy" />
@@ -38,17 +44,6 @@ export const Component = ({ result, reset, interest }) => {
               <button
                 className={style.copy}
                 onClick={() => Copy(item.baseTitle)}
-              >
-                <img className={style.svg} src={copySvg} alt="Copy" />
-              </button>
-            </div>
-            <div className={style.cardItem}>
-              <div>
-                <strong>Количество:</strong> {item.quantity}
-              </div>
-              <button
-                className={style.copy}
-                onClick={() => Copy(item.quantity)}
               >
                 <img className={style.svg} src={copySvg} alt="Copy" />
               </button>
@@ -86,6 +81,17 @@ export const Component = ({ result, reset, interest }) => {
             </div>
             <div className={style.cardItem}>
               <div>
+                <strong>Количество:</strong> {item.quantity}
+              </div>
+              <button
+                className={style.copy}
+                onClick={() => Copy(item.quantity)}
+              >
+                <img className={style.svg} src={copySvg} alt="Copy" />
+              </button>
+            </div>
+            <div className={style.cardItem}>
+              <div>
                 <strong>Сумма:</strong>{" "}
                 {new Intl.NumberFormat("ru-RU").format(item.sum)}
               </div>
@@ -93,6 +99,9 @@ export const Component = ({ result, reset, interest }) => {
                 <img className={style.svg} src={copySvg} alt="Copy" />
               </button>
             </div>
+
+            <div className={style.NumberWrapper}><div className={style.number}>{++number}</div></div>
+
           </div>
         </>
       ))}
